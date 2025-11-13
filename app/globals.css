@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   :root {
     /* Background & Foreground */
@@ -9,8 +15,8 @@
     --foreground: 0 0% 3.9%;
 
     /* Brand Colors */
-    --brand: #8b5cf6; /* Violet */
-    --brand-2: #06b6d4; /* Cyan */
+    --brand: #ef4444; /* Red */
+    --brand-2: #ea580c; /* Dark Orange */
 
     /* Card */
     --card: 0 0% 100%;
@@ -47,6 +53,9 @@
 
     /* Radius */
     --radius: 12px;
+
+    /* Nav scroll reveal */
+    --header-scroll-reveal: 0;
   }
 
   .dark {
@@ -137,6 +146,45 @@
   }
 }
 
+@keyframes rotate-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes nav-enter-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nav-enter-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nav-scale-in {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
 @layer components {
   /* Section spacing */
   .section-padding {
@@ -154,6 +202,59 @@
 
   .glass-dark {
     @apply bg-black/10 backdrop-blur-md border border-black/20;
+  }
+
+  /* Mirage-style glassmorphic nav - Ultra-clear refractive glass */
+  .nav-glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.01); /* Hyper-transparent base */
+    backdrop-filter: blur(24px) saturate(200%) brightness(1.05); /* Enhanced refraction */
+    -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.05);
+    border-radius: 30px;
+    box-shadow: 
+      0 0 0 1px rgba(255, 255, 255, 0.18), /* Subtle border */
+      inset 0 2px 4px 0 rgba(255, 255, 255, 0.25), /* Enhanced glass highlight */
+      inset 0 -2px 4px 0 rgba(0, 0, 0, 0.05), /* Subtle depth */
+      0 2px 8px rgba(0, 0, 0, 0.02),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.12),
+      0 0 40px rgba(239, 68, 68, 0.4), /* Brand glow */
+      0 0 80px rgba(239, 68, 68, 0.2);
+  }
+
+  .nav-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    padding: 1px;
+    background: linear-gradient(
+      var(--angle),
+      var(--brand),
+      var(--brand-2),
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: calc(var(--header-scroll-reveal) * 0.6);
+    animation: rotate-border 10s linear infinite;
+    pointer-events: none;
+  }
+
+  .nav-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: linear-gradient(
+      180deg, 
+      rgba(255, 255, 255, 0.2) 0%, 
+      rgba(255, 255, 255, 0.08) 30%,
+      rgba(255, 255, 255, 0.02) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
   }
 
   /* Hero background with video - Mirage style */
@@ -178,6 +279,192 @@
 
   .desktop-background-video[data-playing="false"] {
     opacity: 0;
+  }
+
+  /* Video Carousel Styles - Mirage-inspired */
+  .video-carousel-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-carousel-item {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Inactive state: grayscale + reduced opacity */
+  .video-carousel-item[data-active="false"] {
+    opacity: 0.4;
+    filter: grayscale(100%);
+  }
+
+  .video-carousel-item[data-active="false"] .video-carousel-item-box {
+    transform: scale(0.95);
+  }
+
+  /* Active state: full color + glow effect */
+  .video-carousel-item[data-active="true"] {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  .video-carousel-item[data-active="true"] .video-carousel-item-box {
+    transform: scale(1);
+    box-shadow: 
+      0 0 40px rgba(239, 68, 68, 0.4),
+      0 0 80px rgba(239, 68, 68, 0.2),
+      0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .video-carousel-item-box {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Carousel button hover effects */
+  .carousel-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .carousel-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
+  }
+
+  .carousel-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 800px) {
+    .video-carousel-item {
+      basis: 240px !important;
+    }
+
+    .video-carousel-item-box {
+      height: 400px !important;
+    }
+
+    .carousel-button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* Smooth scrolling for embla */
+  .embla__container {
+    backface-visibility: hidden;
+    touch-action: pan-y;
+  }
+
+  /* Press/Logo Ticker - Scrolling logos band */
+  .press-ticker {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .press-track {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+    animation: ticker-scroll 25s linear infinite;
+  }
+
+  .logo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .logo-placeholder:hover {
+    color: rgba(255, 255, 255, 0.95);
+    transform: scale(1.05);
+  }
+
+  @keyframes ticker-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pause animation on hover */
+  .press-ticker:hover .press-track {
+    animation-play-state: paused;
+  }
+
+  /* Responsive adjustments for ticker */
+  @media (max-width: 1024px) {
+    .press-ticker {
+      padding: 0.875rem 0;
+    }
+
+    .press-track {
+      gap: 3.5rem;
+      animation-duration: 22s;
+    }
+
+    .logo-placeholder {
+      height: 36px;
+      font-size: 0.8125rem;
+      padding: 0 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .press-ticker {
+      padding: 0.75rem 0;
+    }
+
+    .press-track {
+      gap: 2.5rem;
+      animation-duration: 20s;
+    }
+
+    .logo-placeholder {
+      height: 32px;
+      font-size: 0.7rem;
+      padding: 0 1rem;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .press-ticker {
+      padding: 0.625rem 0;
+    }
+
+    .press-track {
+      gap: 2rem;
+      animation-duration: 18s;
+    }
+
+    .logo-placeholder {
+      height: 28px;
+      font-size: 0.625rem;
+      padding: 0 0.75rem;
+      letter-spacing: 0.03em;
+    }
   }
 }
 

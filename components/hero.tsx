@@ -8,12 +8,11 @@ import { VideoBackground } from '@/components/video-background';
  */
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 sm:pt-32 md:pt-24 lg:pt-20">
       {/* Video Background - Desktop only, image fallback for mobile */}
       <VideoBackground
         sources={{
-          mp4: '/videos/hero-gradient.mp4',
-          webm: '/videos/hero-gradient.webm',
+          mp4: '/videos/Hero-video-US2.mp4',
         }}
         fallbackImage="/images/hero-fallback.jpg"
         fallbackAlt="Tenchi Flux Studios - AI Cinema"
@@ -21,21 +20,28 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 container-custom text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight tracking-tight animate-fade-in">
-          Breakthrough cinema, <br />
-          without the bottlenecks.{' '}
-          <span className="text-flux">Meet Tenchi Flux Studios.</span>
-        </h1>
+      <div className="relative z-10 container-custom text-center px-4">
+        {/* H1 and paragraph with shader background rectangle */}
+        <div className="inline-block relative max-w-full">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/40 backdrop-blur-sm rounded-xl sm:rounded-2xl" />
+          <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 md:py-6 lg:py-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold leading-tight tracking-tight animate-fade-in">
+              Cinema at Your Fingertips{' '}
+              <span className="text-flux">Welcome to Tenchi Flux Studios</span>
+            </h1>
+            
+            <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-foreground font-bold max-w-3xl mx-auto animate-slide-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
+              Where storytelling, cinema, and artificial intelligence merge. We craft AI-powered
+              films, experimental shorts, and engaging ads that get win hearts and earn eyeballs.
+            </p>
+          </div>
+        </div>
+      </div>
 
-        <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
-          Where storytelling, cinema, and artificial intelligence collide. We craft AI-powered
-          films, experimental shorts, and cinematic worlds that blur the line between reality and
-          machine.
-        </p>
-
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
-          <Button asChild variant="flux" size="lg">
+      {/* Buttons at bottom, above ticker */}
+      <div className="absolute bottom-20 md:bottom-24 left-0 right-0 z-20 px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-slide-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
+          <Button asChild variant="flux" size="lg" className="w-full sm:w-auto max-w-xs">
             <a
               href="https://youtube.com/@TenchiFlux"
               target="_blank"
@@ -45,24 +51,40 @@ export function Hero() {
             </a>
           </Button>
 
-          <Button asChild variant="outline" size="lg">
+          <Button asChild variant="outline" size="lg" className="w-full sm:w-auto max-w-xs">
             <Link href="/contact">Start a project</Link>
           </Button>
         </div>
+      </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg
-            className="w-6 h-6 text-muted-foreground"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+      {/* Press/Logo Ticker */}
+      <div className="press-ticker">
+        <div className="press-track">
+          {/* First set of logos */}
+          <div className="logo-placeholder">NCO JOURNAL</div>
+          <div className="logo-placeholder">ARMY UNIVERSITY PRESS</div>
+          <div className="logo-placeholder">MILITARY REVIEW</div>
+          <div className="logo-placeholder">GREATER HEIGHTS WRESTLING</div>
+          <div className="logo-placeholder">TEAM HAMMER WRESTLING ACADEMY</div>
+          <div className="logo-placeholder">DARK HORSE ELITE</div>
+          <div className="logo-placeholder">AESTHETIC TILE</div>
+          <div className="logo-placeholder">FLEITZ FAMILY TILE</div>
+          <div className="logo-placeholder">US ARMY</div>
+          <div className="logo-placeholder">TRADOC</div>
+          <div className="logo-placeholder">VERSATILE FLEET SOLUTION</div>
+          
+          {/* Duplicate set for seamless loop */}
+          <div className="logo-placeholder" aria-hidden="true">NCO JOURNAL</div>
+          <div className="logo-placeholder" aria-hidden="true">ARMY UNIVERSITY PRESS</div>
+          <div className="logo-placeholder" aria-hidden="true">MILITARY REVIEW</div>
+          <div className="logo-placeholder" aria-hidden="true">GREATER HEIGHTS WRESTLING</div>
+          <div className="logo-placeholder" aria-hidden="true">TEAM HAMMER WRESTLING ACADEMY</div>
+          <div className="logo-placeholder" aria-hidden="true">DARK HORSE ELITE</div>
+          <div className="logo-placeholder" aria-hidden="true">AESTHETIC TILE</div>
+          <div className="logo-placeholder" aria-hidden="true">FLEITZ FAMILY TILE</div>
+          <div className="logo-placeholder" aria-hidden="true">US ARMY</div>
+          <div className="logo-placeholder" aria-hidden="true">TRADOC</div>
+          <div className="logo-placeholder" aria-hidden="true">VERSATILE FLEET SOLUTION</div>
         </div>
       </div>
     </section>
