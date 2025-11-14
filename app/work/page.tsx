@@ -41,7 +41,7 @@ export default async function WorkPage() {
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               AI-powered films, experimental shorts, and behind-the-scenes workflows. Explore how
-              we're pushing the boundaries of AI cinema.
+              we&rsquo;re pushing the boundaries of AI cinema.
             </p>
           </div>
 

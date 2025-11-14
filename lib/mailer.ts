@@ -15,9 +15,23 @@ const logger = pino({
 });
 
 /**
- * Resend client instance
+ * Lazily create the Resend client to avoid build-time failures when the API key
+ * is not available (e.g., local development without secrets configured).
  */
-const resend = new Resend(process.env.RESEND_API_KEY);
+function createResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    if (process.env.NODE_ENV !== 'production') {
+      logger.warn('RESEND_API_KEY is not set. Skipping email delivery and logging payload instead.');
+      return null;
+    }
+
+    throw new Error('RESEND_API_KEY is required to send emails.');
+  }
+
+  return new Resend(apiKey);
+}
 
 export interface ContactFormData {
   name: string;
@@ -32,6 +46,12 @@ export interface ContactFormData {
 export async function sendContactEmail(data: ContactFormData) {
   try {
     const { name, email, message, brief } = data;
+    const resend = createResendClient();
+
+    if (!resend) {
+      logger.info({ data }, 'Contact email skipped because RESEND_API_KEY is missing.');
+      return { success: false };
+    }
 
     const response = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'hello@tenchiflux.com',
@@ -55,8 +75,9 @@ export async function sendContactEmail(data: ContactFormData) {
       throw new Error('Failed to send email');
     }
 
-    logger.info({ id: response.data?.id }, 'Email sent successfully');
-    return { success: true, id: response.data?.id };
+    const emailId = response.data?.id;
+    logger.info({ id: emailId }, 'Email sent successfully');
+    return { success: true, id: emailId };
   } catch (error) {
     logger.error({ error }, 'Error sending email');
     throw error;

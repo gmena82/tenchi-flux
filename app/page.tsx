@@ -1,16 +1,17 @@
 import { Hero } from '@/components/hero';
 import { ValueCards } from '@/components/value-cards';
 import { ProcessSteps } from '@/components/process-steps';
-import { Gallery } from '@/components/gallery';
+import { VideoCarousel } from '@/components/video-carousel';
 import { StatementBand } from '@/components/statement-band';
 import { AudienceCards } from '@/components/audience-cards';
 import { CTABand } from '@/components/cta-band';
 import { FAQ } from '@/components/faq';
 import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/structured-data';
+import { videoCarouselItems } from '@/lib/video-data';
 
 /**
  * Home Page
- * Matches Mirage studio layout: Hero → Values → Process → Gallery → Statement → Audience → CTA → FAQ
+ * Matches Mirage studio layout: Hero → Values → Process → Video Carousel → Statement → Audience → CTA → FAQ
  */
 export default function HomePage() {
   // Structured data for SEO
@@ -38,8 +39,8 @@ export default function HomePage() {
       {/* Process */}
       <ProcessSteps />
 
-      {/* Work Gallery */}
-      <Gallery />
+      {/* Video Carousel - Mirage style */}
+      <VideoCarousel items={videoCarouselItems} />
 
       {/* Mission Statement */}
       <StatementBand />

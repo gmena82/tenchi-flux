@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Space_Grotesk, Poppins } from 'next/font/google';
 import Script from 'next/script';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/footer';
@@ -19,6 +19,13 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
+
 export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
@@ -27,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${poppins.variable}`}>
       <head>
         {/* Plausible Analytics */}
         {analyticsConfig.enabled && (

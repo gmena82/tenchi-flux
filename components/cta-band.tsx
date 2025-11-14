@@ -14,7 +14,7 @@ export function CTABand() {
             Ready to create <span className="text-flux">breakthrough cinema</span>?
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground mb-10 leading-relaxed">
-            Whether you're exploring AI filmmaking or ready to start production, we're here to bring
+            Whether you&rsquo;re exploring AI filmmaking or ready to start production, we&rsquo;re here to bring
             your vision to life.
           </p>
 

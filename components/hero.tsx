@@ -87,6 +87,31 @@ export function Hero() {
           <div className="logo-placeholder" aria-hidden="true">VERSATILE FLEET SOLUTION</div>
         </div>
       </div>
+
+      {/* Press/Logo Ticker */}
+      <div className="press-ticker">
+        <div className="press-track">
+          {/* First set of logos */}
+          <div className="logo-placeholder">NETFLIX</div>
+          <div className="logo-placeholder">SONY PICTURES</div>
+          <div className="logo-placeholder">UNIVERSAL</div>
+          <div className="logo-placeholder">A24</div>
+          <div className="logo-placeholder">PARAMOUNT</div>
+          <div className="logo-placeholder">HBO MAX</div>
+          <div className="logo-placeholder">DISNEY+</div>
+          <div className="logo-placeholder">APPLE TV+</div>
+          
+          {/* Duplicate set for seamless loop */}
+          <div className="logo-placeholder" aria-hidden="true">NETFLIX</div>
+          <div className="logo-placeholder" aria-hidden="true">SONY PICTURES</div>
+          <div className="logo-placeholder" aria-hidden="true">UNIVERSAL</div>
+          <div className="logo-placeholder" aria-hidden="true">A24</div>
+          <div className="logo-placeholder" aria-hidden="true">PARAMOUNT</div>
+          <div className="logo-placeholder" aria-hidden="true">HBO MAX</div>
+          <div className="logo-placeholder" aria-hidden="true">DISNEY+</div>
+          <div className="logo-placeholder" aria-hidden="true">APPLE TV+</div>
+        </div>
+      </div>
     </section>
   );
 }

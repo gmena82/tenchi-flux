@@ -68,7 +68,7 @@ export async function getWorkPost(slug: string): Promise<WorkPost | null> {
       frontmatter: data as WorkFrontmatter,
       content,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

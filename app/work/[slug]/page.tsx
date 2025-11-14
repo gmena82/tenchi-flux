@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -8,17 +8,24 @@ import { generatePageMetadata } from '@/lib/seo';
 import { generateBreadcrumbSchema, generateVideoSchema } from '@/lib/structured-data';
 import { formatDate } from '@/lib/utils';
 
-interface WorkDetailPageProps {
-  params: {
+type WorkDetailPageProps = {
+  params?: Promise<{
     slug: string;
-  };
-}
+  }>;
+};
 
 /**
  * Generate metadata for work detail pages
  */
 export async function generateMetadata({ params }: WorkDetailPageProps): Promise<Metadata> {
-  const post = await getWorkPost(params.slug);
+  const resolvedParams = (await params) ?? null;
+  if (!resolvedParams?.slug) {
+    return {
+      title: 'Work Not Found',
+    };
+  }
+
+  const post = await getWorkPost(resolvedParams.slug);
 
   if (!post) {
     return {
@@ -29,7 +36,7 @@ export async function generateMetadata({ params }: WorkDetailPageProps): Promise
   return generatePageMetadata({
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-    path: `/work/${params.slug}`,
+    path: `/work/${resolvedParams.slug}`,
     image: post.frontmatter.thumbnail,
   });
 }
@@ -49,7 +56,12 @@ export async function generateStaticParams() {
  * Renders MDX content with metadata
  */
 export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
-  const post = await getWorkPost(params.slug);
+  const resolvedParams = (await params) ?? null;
+  if (!resolvedParams?.slug) {
+    notFound();
+  }
+
+  const post = await getWorkPost(resolvedParams.slug);
 
   if (!post) {
     notFound();
@@ -61,7 +73,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Home', url: '/' },
     { name: 'Work', url: '/work' },
-    { name: frontmatter.title, url: `/work/${params.slug}` },
+    { name: frontmatter.title, url: `/work/${resolvedParams.slug}` },
   ]);
 
   const videoSchema = frontmatter.youtubeId
@@ -70,7 +82,7 @@ export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
         description: frontmatter.description,
         thumbnailUrl: frontmatter.thumbnail,
         uploadDate: frontmatter.publishedAt,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/work/${params.slug}`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/work/${resolvedParams.slug}`,
       })
     : null;
 

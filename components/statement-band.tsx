@@ -11,8 +11,8 @@ export function StatementBand() {
             <span className="text-flux">Human-centered</span> AI cinema
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed">
-            We believe the future of filmmaking isn't choosing between human creativity and machine
-            power—it's blending them. Our emotion-forward approach combines AI tools with real-world
+            We believe the future of filmmaking isn&rsquo;t choosing between human creativity and machine
+            power&mdash;it&rsquo;s blending them. Our emotion-forward approach combines AI tools with real-world
             footage, iterative storytelling, and cinematic pacing that feels authentically human.
             Technology serves the story, not the other way around.
           </p>

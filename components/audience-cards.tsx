@@ -34,7 +34,7 @@ export function AudienceCards() {
             Who we <span className="text-flux">help</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From agencies to indie creators, we partner with teams ready to reimagine what's possible.
+            From agencies to indie creators, we partner with teams ready to reimagine what&rsquo;s possible.
           </p>
         </div>
 

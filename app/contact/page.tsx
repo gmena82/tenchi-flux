@@ -20,11 +20,11 @@ export default function ContactPage() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-4">
-            Let's create <span className="text-flux">something remarkable</span>
+            Let&rsquo;s create <span className="text-flux">something remarkable</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Whether you're ready to start a project or just curious about what's possible with AI
-            cinema, we'd love to hear from you.
+            Whether you&rsquo;re ready to start a project or just curious about what&rsquo;s possible with AI
+            cinema, we&rsquo;d love to hear from you.
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function ContactPage() {
             <div className="p-6 rounded-lg bg-muted/30 border">
               <h3 className="font-semibold mb-2">About Tenchi Flux Studios</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                We're the creative AI division of Growvia Marketing, specializing in AI-powered
+                We&rsquo;re the creative AI division of Growvia Marketing, specializing in AI-powered
                 cinema and storytelling. Our team blends cutting-edge AI tools with traditional
                 filmmaking craft to create breakthrough content.
               </p>

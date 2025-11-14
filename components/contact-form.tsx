@@ -73,12 +73,13 @@ export function ContactForm() {
 
       setFormState({
         status: 'success',
-        message: 'Thanks for reaching out! We'll get back to you soon.',
+        message: "Thanks for reaching out! We'll get back to you soon.",
       });
 
       // Reset form
       e.currentTarget.reset();
     } catch (error) {
+      console.error('Contact form submission failed:', error);
       setFormState({
         status: 'error',
         message: 'Something went wrong. Please try again or email us directly.',

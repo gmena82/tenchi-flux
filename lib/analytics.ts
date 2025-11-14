@@ -9,6 +9,18 @@ export const analyticsConfig = {
   src: 'https://plausible.io/js/script.js',
 };
 
+declare global {
+  interface Window {
+    plausible?: (
+      eventName: string,
+      options?: {
+        props?: Record<string, string | number>;
+        u?: string;
+      }
+    ) => void;
+  }
+}
+
 /**
  * Track custom event (Plausible)
  * @param eventName - Event name
@@ -18,11 +30,7 @@ export function trackEvent(eventName: string, props?: Record<string, string | nu
   if (!analyticsConfig.enabled || typeof window === 'undefined') return;
 
   try {
-    // @ts-ignore - plausible is added via script tag
-    if (window.plausible) {
-      // @ts-ignore
-      window.plausible(eventName, { props });
-    }
+    window.plausible?.(eventName, { props });
   } catch (error) {
     console.error('Analytics error:', error);
   }
@@ -36,11 +44,7 @@ export function trackPageView(url: string) {
   if (!analyticsConfig.enabled || typeof window === 'undefined') return;
 
   try {
-    // @ts-ignore
-    if (window.plausible) {
-      // @ts-ignore
-      window.plausible('pageview', { u: url });
-    }
+    window.plausible?.('pageview', { u: url });
   } catch (error) {
     console.error('Analytics error:', error);
   }
