@@ -1,3 +1,5 @@
+import type { ReactElement } from "react"
+
 import Image from "next/image"
 
 import { CheckIcon } from "../_components/CheckIcon"
@@ -157,7 +159,7 @@ function IntroSection() {
 }
 
 function OutdoorHighlightsSection() {
-  const iconMap: Record<string, JSX.Element> = {
+  const iconMap: Record<string, ReactElement> = {
     lanai: (
       <svg className="size-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
         <rect x="3" y="3" width="18" height="18" rx="2" />

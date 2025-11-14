@@ -22,9 +22,13 @@ const SERVICE_SECTIONS = SERVICE_CARDS.map((service) => {
       "From custom mosaics to outdoor patios, we bring creativity and precision to unique tile applications tailored to your vision.",
   }
 
+  const href = (service as typeof service & { href?: string }).href
+  const descriptionFromMap = href ? details[href] : undefined
+
   return {
     ...service,
-    description: details[service.href] ?? "Premium tile craftsmanship for your next project.",
+    href,
+    description: descriptionFromMap ?? "Premium tile craftsmanship for your next project.",
   }
 })
 
@@ -155,7 +159,7 @@ function ServicesDetailSection() {
     <section className="space-y-12">
       {SERVICE_SECTIONS.map((service, index) => (
         <div
-          key={service.href}
+          key={service.href ?? service.label}
           className={`bg-white ${index % 2 === 1 ? "bg-slate-50" : ""}`}
         >
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-2 lg:items-center">
@@ -174,7 +178,7 @@ function ServiceContent({ service }: { service: (typeof SERVICE_SECTIONS)[number
       <h3 className="text-2xl font-semibold text-slate-900">{service.label}</h3>
       <p className="text-base leading-7 text-slate-600">{service.description}</p>
       <Link
-        href={service.href}
+        href={service.href ?? "/contact"}
         className="inline-flex items-center gap-2 rounded-full border border-purple-500 px-5 py-2 text-sm font-semibold text-purple-600 transition hover:bg-purple-50"
       >
         {service.cta}
