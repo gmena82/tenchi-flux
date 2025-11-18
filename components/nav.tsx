@@ -165,7 +165,7 @@ export function Nav() {
                 {/* YouTube */}
                 <NavigationMenu.Item>
                   <a
-                    href="https://youtube.com/@TenchiFlux"
+                    href="https://www.youtube.com/@tenchi-flux-studios/shorts"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg focus-visible-ring"
@@ -272,7 +272,7 @@ export function Nav() {
                 Work
               </Link>
               <a
-                href="https://youtube.com/@TenchiFlux"
+                href="https://www.youtube.com/@tenchi-flux-studios/shorts"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block p-3 rounded-lg text-sm font-medium text-foreground hover:bg-accent/50 transition-colors"

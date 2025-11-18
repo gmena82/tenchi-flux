@@ -5,24 +5,28 @@
 export function AudienceCards() {
   const audiences = [
     {
-      title: 'Agencies',
-      description: 'Scale creative output without scaling headcount. Deliver cinematic content at the speed your clients demand.',
-      icon: '🎯',
+      title: 'Ad Agencies',
+      description:
+        'White-label our high-end production to expand your service offerings and win bigger, more ambitious client pitches.',
+      icon: '識',
     },
     {
-      title: 'Brand Teams',
-      description: 'Stand out with original, high-impact video content. Tell brand stories that break through the noise.',
-      icon: '🏢',
+      title: 'Global Brands',
+      description:
+        'Define your visual legacy with culturally resonant, cutting-edge campaigns that generate buzz and set new industry standards.',
+      icon: '召',
     },
     {
-      title: 'Creators',
-      description: 'Unlock studio-quality production on creator budgets. Bring ambitious visions to life without compromise.',
-      icon: '🎬',
+      title: 'Music Artists',
+      description:
+        'Unlock studio-quality production on an ambitious scale; perfect for music videos and short-form artistic concepts.',
+      icon: '汐',
     },
     {
-      title: 'Labs',
-      description: "Push the boundaries of what's possible. Partner with us to experiment with cutting-edge AI workflows.",
-      icon: '🔬',
+      title: 'Labs & Studios',
+      description:
+        'Utilize our expertise for rapid concept art, pitch visualization, and the integration of full-scale AI production pipelines.',
+      icon: '溌',
     },
   ];
 
@@ -31,10 +35,10 @@ export function AudienceCards() {
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
-            Who we <span className="text-flux">help</span>
+            Who we <span className="text-flux">elevate</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From agencies to indie creators, we partner with teams ready to reimagine what&rsquo;s possible.
+            We partner with visionary teams ready to redefine their creative output and challenge the status quo.
           </p>
         </div>
 
@@ -59,4 +63,3 @@ export function AudienceCards() {
     </section>
   );
 }
-

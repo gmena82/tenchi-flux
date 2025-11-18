@@ -5,9 +5,9 @@
 export function ValueCards() {
   const values = [
     {
-      title: 'Unlock creativity',
+      title: 'Limitless Locations',
       description:
-        'Break free from traditional production constraints. AI-powered workflows let you explore infinite creative possibilities and iterate rapidly.',
+        'From cyberpunk cities to historical battlefields, we "shoot" anywhere without logistical constraints, entirely in the digital studio.',
       icon: (
         <svg
           className="w-8 h-8"
@@ -23,9 +23,9 @@ export function ValueCards() {
       ),
     },
     {
-      title: 'Unblock production',
+      title: 'Bespoke Aesthetics',
       description:
-        'Eliminate bottlenecks. Generate cinematic shots, worlds, and characters at the speed of imagination, not the pace of traditional production.',
+        'We train custom models on your brand identity and style guides to ensure consistent characters, environments, and a visual feel that is uniquely yours.',
       icon: (
         <svg
           className="w-8 h-8"
@@ -41,9 +41,9 @@ export function ValueCards() {
       ),
     },
     {
-      title: 'Control your vision',
+      title: 'Visual Storytelling',
       description:
-        'Maintain full creative control with iterative workflows. Fine-tune every frame, adjust pacing, and blend AI with real footage seamlessly.',
+        'We don\'t just generate video; we craft narratives that resonate on a deep, human level, with full creative control over pacing, shots, and fidelity.',
       icon: (
         <svg
           className="w-8 h-8"

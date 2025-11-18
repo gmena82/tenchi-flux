@@ -8,23 +8,23 @@ export function ProcessSteps() {
   const steps = [
     {
       number: '01',
-      title: 'Script & Sound',
+      title: 'Vision Architecture',
       description:
-        'Write cinematic prompts and scripts. Generate or record audio, voiceovers, and soundscapes to set the emotional tone.',
+        'We blueprint the visual language, mood, and pacing of your world, designing the entire cinematic structure before a single pixel is rendered.',
       image: '/placeholders/placeholder-16x9.jpg',
     },
     {
       number: '02',
-      title: 'World & Cast',
+      title: 'Hybrid Synthesis',
       description:
-        'Design immersive worlds, define visual style, and create AI actors. Build your cinematic universe with consistent characters and environments.',
+        'We merge AI generation with traditional motion techniques to correct artifacts, ensure cinematic fidelity, and integrate real footage seamlessly.',
       image: '/placeholders/placeholder-16x9.jpg',
     },
     {
       number: '03',
-      title: 'Compose & Render',
+      title: 'Mastering & Delivery',
       description:
-        'Assemble shots, refine pacing, and iterate on every detail. Render final output and blend AI with real footage for hybrid storytelling.',
+        'High-end compositing, 4K upscaling, and professional sound design bring the final piece to a theatrical standard, ready for broadcast or social.',
       image: '/placeholders/placeholder-16x9.jpg',
     },
   ];
@@ -34,11 +34,10 @@ export function ProcessSteps() {
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
-            From idea to film <span className="text-flux">in three steps</span>
+            The Next Era of Production <span className="text-flux">in three steps</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our AI-powered workflow takes you from concept to final render with creative control at
-            every stage.
+            Our AI-powered, human-directed workflow takes you from high-level concept to final theatrical render with unparalleled efficiency.
           </p>
         </div>
 

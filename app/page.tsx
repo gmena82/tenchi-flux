@@ -2,6 +2,7 @@ import { Hero } from '@/components/hero';
 import { ValueCards } from '@/components/value-cards';
 import { ProcessSteps } from '@/components/process-steps';
 import { VideoCarousel } from '@/components/video-carousel';
+import { VideoToolsTicker } from '@/components/video-tools-ticker';
 import { StatementBand } from '@/components/statement-band';
 import { AudienceCards } from '@/components/audience-cards';
 import { CTABand } from '@/components/cta-band';
@@ -38,6 +39,9 @@ export default function HomePage() {
 
       {/* Process */}
       <ProcessSteps />
+
+      {/* Video tool ticker */}
+      <VideoToolsTicker />
 
       {/* Video Carousel - Mirage style */}
       <VideoCarousel items={videoCarouselItems} />

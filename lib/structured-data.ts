@@ -23,7 +23,7 @@ export function generateOrganizationSchema() {
       url: 'https://growvia.com',
     },
     sameAs: [
-      'https://youtube.com/@TenchiFlux',
+      'https://www.youtube.com/@tenchi-flux-studios/shorts',
       'https://twitter.com/TenchiFlux',
       'https://instagram.com/tenchiflux',
     ],

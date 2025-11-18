@@ -13,6 +13,10 @@ const config: NextConfig = {
         protocol: 'https',
         hostname: '**.ytimg.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.prod.website-files.com',
+      },
     ],
   },
   async headers() {
