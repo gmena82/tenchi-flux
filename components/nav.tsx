@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { ChevronDownIcon, HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons';
+import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 /**
- * Nav - Premium glassmorphic navigation with Radix NavigationMenu
- * Emulates Mirage studio's nav: fixed, centered, glass effect, rotating gradient border, dropdown menus
+ * Nav - Clean, simple glassmorphic navigation
+ * Direct links to all main pages.
  */
 export function Nav() {
   const pathname = usePathname();
@@ -21,24 +20,30 @@ export function Nav() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 20);
-      // Update CSS variable for scroll-based gradient reveal
       const revealValue = Math.min(scrollY / 100, 1);
       document.documentElement.style.setProperty('--header-scroll-reveal', revealValue.toString());
     };
 
-    handleScroll(); // Initialize on mount
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/storytelling', label: 'Storytelling' },
+    { href: '/services', label: 'Services' },
+    { href: '/work', label: 'Portfolio' },
+  ];
+
   return (
     <>
-      {/* Fixed Container - Mirage style: top: 20px, centered with margin */}
+      {/* Fixed Container */}
       <header
         className="fixed top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 z-50 mx-auto max-w-7xl"
         style={{ maxWidth: 'calc(100% - 40px)' }}
@@ -54,136 +59,34 @@ export function Nav() {
               Tenchi Flux
             </Link>
 
-            {/* Desktop Nav - Radix NavigationMenu */}
-            <NavigationMenu.Root className="hidden lg:block">
-              <NavigationMenu.List className="flex items-center gap-2">
-                {/* Services Dropdown */}
-                <NavigationMenu.Item>
-                  <NavigationMenu.Trigger className="group flex items-center gap-1 px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg focus-visible-ring">
-                    Services
-                    <ChevronDownIcon
-                      className="transition-transform duration-200 group-data-[state=open]:rotate-180"
-                      aria-hidden
-                    />
-                  </NavigationMenu.Trigger>
-                  <NavigationMenu.Content className="absolute top-0 left-0 w-full sm:w-auto data-[motion=from-start]:animate-[nav-enter-from-left_200ms] data-[motion=from-end]:animate-[nav-enter-from-right_200ms] data-[motion=to-start]:animate-[nav-enter-from-left_200ms_reverse] data-[motion=to-end]:animate-[nav-enter-from-right_200ms_reverse]">
-                    <div className="mt-4 w-[600px]">
-                      <div className="rounded-2xl bg-background/95 backdrop-blur-xl border border-border shadow-xl p-6">
-                        <div className="grid grid-cols-2 gap-4">
-                          {/* AI Cinema */}
-                          <Link
-                            href="/contact"
-                            className="group relative rounded-xl p-4 hover:bg-accent/50 transition-all duration-200"
-                          >
-                            <div className="flex items-start gap-3">
-                              <div className="text-3xl">🎬</div>
-                              <div>
-                                <div className="font-semibold text-foreground group-hover:text-brand transition-colors">
-                                  AI Cinema
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-1">
-                                  Experimental narrative shorts with cutting-edge AI tools
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-
-                          {/* Commercial */}
-                          <Link
-                            href="/contact"
-                            className="group relative rounded-xl p-4 hover:bg-accent/50 transition-all duration-200"
-                          >
-                            <div className="flex items-start gap-3">
-                              <div className="text-3xl">📺</div>
-                              <div>
-                                <div className="font-semibold text-foreground group-hover:text-brand transition-colors">
-                                  Commercial
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-1">
-                                  Explainers, product demos, brand stories
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-
-                          {/* World-Building */}
-                          <Link
-                            href="/contact"
-                            className="group relative rounded-xl p-4 hover:bg-accent/50 transition-all duration-200"
-                          >
-                            <div className="flex items-start gap-3">
-                              <div className="text-3xl">🌍</div>
-                              <div>
-                                <div className="font-semibold text-foreground group-hover:text-brand transition-colors">
-                                  World-Building
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-1">
-                                  Custom environments, characters, consistent lore
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-
-                          {/* Labs */}
-                          <Link
-                            href="/contact"
-                            className="group relative rounded-xl p-4 hover:bg-accent/50 transition-all duration-200 border-2 border-brand/20"
-                          >
-                            <div className="flex items-start gap-3">
-                              <div className="text-3xl">🔬</div>
-                              <div>
-                                <div className="font-semibold text-brand group-hover:text-brand-2 transition-colors">
-                                  Flux Labs
-                                </div>
-                                <p className="text-sm text-muted-foreground mt-1">
-                                  Push boundaries with experimental AI workflows
-                                </p>
-                              </div>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenu.Content>
-                </NavigationMenu.Item>
-
-                {/* Work */}
-                <NavigationMenu.Item>
-                  <Link
-                    href="/work"
-                    className={cn(
-                      'block px-4 py-2 text-sm font-medium transition-colors rounded-lg focus-visible-ring',
-                      pathname === '/work'
-                        ? 'text-brand'
-                        : 'text-muted-foreground hover:text-foreground'
-                    )}
-                  >
-                    Work
-                  </Link>
-                </NavigationMenu.Item>
-
-                {/* YouTube */}
-                <NavigationMenu.Item>
-                  <a
-                    href="https://www.youtube.com/@tenchi-flux-studios/shorts"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg focus-visible-ring"
-                  >
-                    YouTube
-                  </a>
-                </NavigationMenu.Item>
-
-                {/* Viewport for dropdown positioning */}
-                <NavigationMenu.Viewport className="absolute top-full left-0 mt-2 origin-top-center animate-[nav-scale-in_200ms] overflow-hidden rounded-2xl data-[state=open]:animate-in data-[state=closed]:animate-out" />
-              </NavigationMenu.List>
-            </NavigationMenu.Root>
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'relative px-5 py-2.5 text-base font-grotesk transition-all duration-300 rounded-lg',
+                    pathname === link.href
+                      ? 'text-brand font-bold bg-brand/10 shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                      : 'text-white/90 hover:text-white hover:bg-teal-500/20 hover:shadow-[0_0_25px_rgba(20,184,166,0.8)] hover:scale-105'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href="https://www.youtube.com/@tenchi-flux-studios/shorts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative px-5 py-2.5 text-base font-grotesk text-white/90 hover:text-white transition-all duration-300 rounded-lg hover:bg-teal-500/20 hover:shadow-[0_0_25px_rgba(20,184,166,0.8)] hover:scale-105"
+              >
+                YouTube
+              </a>
+            </nav>
 
             {/* CTA Buttons (Desktop) */}
             <div className="hidden lg:flex items-center gap-3">
-              <Button asChild variant="outline" size="default">
-                <Link href="/contact">Get Started</Link>
-              </Button>
               <Button asChild variant="flux" size="default">
                 <Link href="/contact">Start a Project</Link>
               </Button>
@@ -216,61 +119,22 @@ export function Nav() {
 
           {/* Menu Content */}
           <div className="absolute top-24 left-5 right-5 bg-background/95 backdrop-blur-xl border border-border rounded-2xl shadow-2xl p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
-            {/* Services Section */}
-            <div className="mb-6">
-              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
-                Services
-              </div>
-              <div className="space-y-2">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
                 <Link
-                  href="/contact"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors"
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'block p-3 rounded-lg text-sm font-medium transition-colors',
+                    pathname === link.href
+                      ? 'text-brand bg-accent/50'
+                      : 'text-foreground hover:bg-accent/50'
+                  )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <div className="text-2xl">🎬</div>
-                  <div className="text-sm font-medium">AI Cinema</div>
+                  {link.label}
                 </Link>
-                <Link
-                  href="/contact"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <div className="text-2xl">📺</div>
-                  <div className="text-sm font-medium">Commercial</div>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <div className="text-2xl">🌍</div>
-                  <div className="text-sm font-medium">World-Building</div>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent/50 transition-colors border-2 border-brand/20"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <div className="text-2xl">🔬</div>
-                  <div className="text-sm font-medium text-brand">Flux Labs</div>
-                </Link>
-              </div>
-            </div>
-
-            {/* Nav Links */}
-            <div className="mb-6 space-y-2">
-              <Link
-                href="/work"
-                className={cn(
-                  'block p-3 rounded-lg text-sm font-medium transition-colors',
-                  pathname === '/work'
-                    ? 'text-brand bg-accent/50'
-                    : 'text-foreground hover:bg-accent/50'
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Work
-              </Link>
+              ))}
               <a
                 href="https://www.youtube.com/@tenchi-flux-studios/shorts"
                 target="_blank"
@@ -282,13 +146,7 @@ export function Nav() {
               </a>
             </div>
 
-            {/* CTA Buttons (Mobile) */}
-            <div className="space-y-3 pt-4 border-t border-border">
-              <Button asChild variant="outline" size="default" className="w-full">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                  Get Started
-                </Link>
-              </Button>
+            <div className="mt-6 pt-6 border-t border-border">
               <Button asChild variant="flux" size="default" className="w-full">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                   Start a Project
