@@ -68,8 +68,8 @@ export function Nav() {
                   className={cn(
                     'relative px-5 py-2.5 text-base font-grotesk transition-all duration-300 rounded-lg',
                     pathname === link.href
-                      ? 'text-brand font-bold bg-brand/10 shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                      : 'text-white/90 hover:text-white hover:bg-teal-500/20 hover:shadow-[0_0_25px_rgba(20,184,166,0.8)] hover:scale-105'
+                      ? 'text-brand font-bold bg-red-950/50 shadow-[0_0_20px_rgba(239,68,68,0.4)]'
+                      : 'text-white/90 hover:text-white hover:bg-red-900/50 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105'
                   )}
                 >
                   {link.label}
@@ -79,7 +79,7 @@ export function Nav() {
                 href="https://www.youtube.com/@tenchi-flux-studios/shorts"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative px-5 py-2.5 text-base font-grotesk text-white/90 hover:text-white transition-all duration-300 rounded-lg hover:bg-teal-500/20 hover:shadow-[0_0_25px_rgba(20,184,166,0.8)] hover:scale-105"
+                className="relative px-5 py-2.5 text-base font-grotesk text-white/90 hover:text-white transition-all duration-300 rounded-lg hover:bg-red-900/50 hover:shadow-[0_0_25px_rgba(239,68,68,0.5)] hover:scale-105"
               >
                 YouTube
               </a>
